@@ -17,5 +17,3 @@ def func(stidx):
 
 func(0)
 print(ans)
-
-# Please write your code here.
