@@ -15,9 +15,10 @@ def solve(row, tmpmin):
             if i in used:
                 continue
             
-            used.add(i)
-            solve(row+1, min(grid[row][i], tmpmin))
-            used.remove(i)
+            if tmpmin>ans:
+                used.add(i)
+                solve(row+1, min(grid[row][i], tmpmin))
+                used.remove(i)
 
 solve(0, float("inf"))
 
