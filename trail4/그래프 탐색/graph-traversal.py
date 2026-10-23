@@ -13,7 +13,6 @@ def dfs(st, visited):
 
     for idx in graph[st]:
         if idx not in visited:
-            visited.add(idx)
             dfs(idx, visited)
 
 dfs(1, visited)
