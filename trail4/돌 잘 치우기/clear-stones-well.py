@@ -15,11 +15,8 @@ for x in range(n):
         if grid[x][y]==1:
             rocks.append((x, y))
 
-visited=[[False for _ in range(n)] for _ in range(n)]
 move=[(0, 1), (0, -1), (1, 0), (-1, 0)]
-
 b=len(rocks)
-
 ans=0
 
 def dfs():
@@ -53,6 +50,5 @@ for bit in range(1<<b):
         if not bit & (1<<i):
             rr, rc=rocks[i]
             grid[rr][rc]=1
-
 
 print(ans)
