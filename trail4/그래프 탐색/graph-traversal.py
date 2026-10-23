@@ -10,11 +10,13 @@ for s, e in edges:
 
 def dfs(st, visited):
     visited.add(st)
+    cnt=1
 
     for idx in graph[st]:
         if idx not in visited:
-            dfs(idx, visited)
+            cnt+=dfs(idx, visited)
+    return cnt
 
-dfs(1, visited)
 
-print(len(visited)-1)
+
+print(dfs(1, visited)-1)
