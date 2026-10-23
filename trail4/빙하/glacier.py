@@ -5,32 +5,28 @@ a = [list(map(int, input().split())) for _ in range(n)]
 
 move=[(0, 1), (0, -1), (1, 0), (-1, 0)]
 
+t, last = 0, 0
 
+q=deque([(0, 0)])
+visited=[[False for _ in range(m)] for _ in range(n)]
+visited[0][0]=True
 
-def dfs():
-    q=deque([(0, 0)])
-    melt=set()
-    visited=[[False for _ in range(m)] for _ in range(n)]
-
+while 1:
+    nxt=[]
     while q:
         nowx, nowy=q.popleft()
         for dx, dy in move:
             tmpx, tmpy=nowx+dx, nowy+dy
-            if 0<=tmpx<n and 0<=tmpy<m:
-                if a[nowx][nowy]==0 and a[tmpx][tmpy]==1:
-                    melt.add((tmpx, tmpy))
-                if visited[tmpx][tmpy] or a[nowx][nowy]==1:
-                    continue
+            if 0<=tmpx<n and 0<=tmpy<m and not visited[tmpx][tmpy]:
                 visited[tmpx][tmpy]=True
-                q.append((tmpx, tmpy))
-    return melt
+                if a[tmpx][tmpy]==1:
+                    nxt.append((tmpx, tmpy))
+                else: 
+                    q.append((tmpx, tmpy))
+    if not nxt:
+        break    
+    t+=1
+    last=len(nxt)
+    q=deque(nxt)
 
-ans=[0, 0]
-while 1:
-    tmp=dfs()
-    if not tmp:
-        break
-    ans=[ans[0]+1, len(tmp)]
-    for x, y in tmp:
-        a[x][y]=0
-print(*ans)
+print(t, last)
